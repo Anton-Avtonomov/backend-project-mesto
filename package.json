@@ -5,6 +5,10 @@
     "main": "app.js",
     "dependencies": {
         "express": "^4.18.2",
+<<<<<<< HEAD
+=======
+        "mongoose": "^6.8.0",
+>>>>>>> main
         "react": "^18.2.0"
     },
     "devDependencies": {
@@ -29,4 +33,8 @@
         "url": "https://github.com/Anton-Avtonomov/backend-project-mesto/issues"
     },
     "homepage": "https://github.com/Anton-Avtonomov/backend-project-mesto#readme"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
