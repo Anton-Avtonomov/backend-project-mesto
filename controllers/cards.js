@@ -39,7 +39,7 @@ exports.createCard = (req, res) => {
 }
 
 exports.deleteCard = (req, res) => {
-  Cards.remove({})
+  Cards.delete({})
     .then((card) => {
       res.status(200).send(card);
     })
@@ -51,3 +51,42 @@ exports.deleteCard = (req, res) => {
             }
     });
 }
+
+export.likeCard = (res,req) => {
+   const owner = req.user._id;
+
+   Cards.findByIdAndUpdate(
+      req.params.cardId,
+      owner, 
+      { $addToSet: { likes: req.user._id } }, { new: true }, 
+      )
+      .then((card) => {
+         res.status(200).send( {data: card});
+      })
+      .catch((err) => {
+      if (err) {
+        res.status(404).send({ message: 'Переданы некорректные данные для функции лайка.' });
+      } else {
+        res.status(500).send({ message: 'Произошла ошибка' });
+      }
+    });
+}
+
+export.dislikeCard(res,req) => {
+   const owner = req.user._id;
+
+   Cards.findByIdAndUpdate(
+      req.params.cardId,
+      owner, 
+      { $pull: { likes: req.user._id } }, { new: true }, 
+      )
+      .then((card) => {
+         res.status(200).send( {data: card});
+      })
+      .catch((err) => {
+      if (err) {
+        res.status(404).send({ message: 'Переданы некорректные данные для функции лайка.' });
+      } else {
+        res.status(500).send({ message: 'Произошла ошибка' });
+      }
+    });

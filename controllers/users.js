@@ -27,10 +27,9 @@ exports.createUser = (req,res) => {
 };
 
 exports.updateProfile = (req, res) => {
-  const owner = req.user._id;
   const {name, about} = req.body;
 
-  Users.findByIdAndUpdate({name, about, owner})
+  Users.findByIdAndUpdate(req.user._id, {name, about}, {new: true})
   .then((user) => {
      res.status(200).send(user)
   })
@@ -38,12 +37,12 @@ exports.updateProfile = (req, res) => {
    res.status(500).send({ message: 'Произошла ошибка!' })
   })
 };
-   
+
 export.updateAvatar = (req, res) => {
    const owner = req.user._id;
    const avatar = req.body.avatar;
 
-   Users.findByIdAndUpdate({avatar, owner})
+   Users.findByIdAndUpdate(owner, {avatar}, {new: true})
    .then((user) => {
       res.status(200).send(user)
    })
