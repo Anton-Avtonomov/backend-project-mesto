@@ -1,6 +1,11 @@
 // Импортируем модули
 const express = require('express');
 const mongoose = require('mongoose');
+const usersRoutes = require('./routes/users');
+const cardsRoutes = require('./routes/cards');
+
+// Создаем приложение
+const app = express();
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mydb', {
@@ -9,8 +14,18 @@ mongoose.connect('mongodb://localhost:27017/mydb', {
   useFindAndModify: false,
 });
 
-// Создаем приложение
-const app = express();
+//Добавляем в каждый запрос объект user с полем _id
+app.use((req, res, next) => {
+  req.user = {
+    _id: '5d8b8592978f8bd833ca8133' // вставьте сюда _id созданного в предыдущем пункте пользователя
+  };
+
+  next();
+});
+
+//Марштуризация
+app.use('/', usersRoutes);
+app.use('/', cardsRoutes);
 
 // Указываем порт для сервера
 const { PORT = 3000 } = process.env;

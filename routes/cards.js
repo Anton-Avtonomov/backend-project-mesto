@@ -4,19 +4,19 @@ const cardRoutes = require('express').Router();
 //Импорт запросов API
 const { getCards, createCard, deleteCard, likeCard, dislikeCard } = require('../controllers/cards');
 
-//Получения карточек
+//Маршрут получения карточек
 cardRoutes.get('/cards', getCards);
 
-//Создание карточки
+//Маршрут создания карточки
 cardRoutes.post('/cards', createCard);
 
-//Удаление карточки
+//Маршрут удаления карточки
 cardRoutes.delete('/cards/:cardId', deleteCard);
 
-//Like карточки
+//Маршрут Like карточки
 cardRoutes.put('/cards/:cardId/likes', likeCard);
 
-//Dislike карточки
+//Маршрут Dislike карточки
 cardRoutes.delete('/cards/:cardId/likes', dislikeCard);
 
 module.exports = cardsRoutes;
