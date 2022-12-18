@@ -38,7 +38,7 @@ exports.updateProfile = (req, res) => {
   })
 };
 
-export.updateAvatar = (req, res) => {
+exports.updateAvatar = (req, res) => {
    const owner = req.user._id;
    const avatar = req.body.avatar;
 
@@ -50,10 +50,10 @@ export.updateAvatar = (req, res) => {
    res.status(500).send({ message: 'Произошла ошибка!' })
   })
 }
-   
-
-    
 
 
-   
+
+
+
+
 
