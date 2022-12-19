@@ -15,7 +15,7 @@ exports.getCards = (req, res) => {
       res.status(500).send({ message: 'Произошла ошибка!' });
     })
     .finally(() => {
-      console.log(`req.body = ${req.body}, card = ${card}, result = ${res}`);
+      console.log(`req.body = ${req.body}, result = ${res}`);
     });
 };
 
